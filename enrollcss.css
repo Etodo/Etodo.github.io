@@ -252,16 +252,6 @@ body {
     background-color: rgb(146, 201, 60); 
 }
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: rgb(253, 185, 48); 
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
 .GoNow {
     text-align: center;
     background-color: rgb(146, 201, 60);
