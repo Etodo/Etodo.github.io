@@ -286,10 +286,10 @@ body {
 
         .Student-view h1 {
             text-shadow:
-   -1px -1px 0 #000,  
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-     1px 1px 0 #000;
+   -1px -1px 0 #FFFFFF,  
+    1px -1px 0 #FFFFFF,
+    -1px 1px 0 #FFFFFF,
+     1px 1px 0 #FFFFFF;
         }
 
         .leader-view {
@@ -299,8 +299,8 @@ body {
 
         .leader-view {
         text-shadow:
-   -1px -1px 0 #000,  
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-     1px 1px 0 #000;
+   -1px -1px 0 #FFFFFF,  
+    1px -1px 0 #FFFFFF,
+    -1px 1px 0 #FFFFFF,
+     1px 1px 0 #FFFFFF;
         }
