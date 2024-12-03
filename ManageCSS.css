@@ -27,6 +27,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: rgb(254, 254, 254);
     color: rgb(0, 58, 91);
+    flex-direction: column;
 }
 
 
