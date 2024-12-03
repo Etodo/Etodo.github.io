@@ -283,7 +283,24 @@ body {
             background-color: rgb(146, 201, 60);
             background: url('https://baylorlariat.com/wp-content/uploads/2022/03/1097CA5A-A829-4FB3-B7B5-D2DE2D63AB0C.jpeg') no-repeat center center/cover;
         }
+
+        .Student-view h1 {
+            text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+        }
+
         .leader-view {
             background-color: rgb(146, 201, 60);
             background: url('https://communityimpact.com/uploads/images/2023/03/22/247756.jpg') no-repeat center center/cover;
+        }
+
+        .leader-view {
+        text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
         }
