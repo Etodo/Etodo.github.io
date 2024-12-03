@@ -122,9 +122,8 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column; /* Stacks items vertically */
-    justify-content: center;
-    align-items: center;
+    justify-content: center; 
+    align-items: center;  
     min-height: 100vh;
     background-color: #f5f5f5;
 }
@@ -132,20 +131,20 @@ body {
 .circle {
     width: 150px;
     height: 150px;
-    margin: 20px;
+    margin: 20px; 
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     background-color: #007BFF;
     color: white;
-    border-radius: 10px; /* Rounded corners for a modern look */
+    border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .circle:hover {
-    transform: scale(1.1); /* Slight zoom on hover */
+    transform: scale(1.1); 
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
