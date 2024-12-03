@@ -285,7 +285,7 @@ body {
         }
 
         .Student-view h1 {
-            -webkit-text-stroke: 1px white;
+            -webkit-text-stroke: .50px white;
             text-shadow:
    -1px -1px 0 #FFFFFF,  
     1px -1px 0 #FFFFFF,
@@ -299,7 +299,7 @@ body {
         }
 
         .leader-view h1 {
-        -webkit-text-stroke: 1px white;
+        -webkit-text-stroke: .50px white;
         text-shadow:
    -1px -1px 0 #FFFFFF,  
     1px -1px 0 #FFFFFF,
