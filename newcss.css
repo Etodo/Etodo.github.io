@@ -285,6 +285,7 @@ body {
         }
 
         .Student-view h1 {
+            -webkit-text-stroke: 1px white;
             text-shadow:
    -1px -1px 0 #FFFFFF,  
     1px -1px 0 #FFFFFF,
@@ -297,7 +298,8 @@ body {
             background: url('https://communityimpact.com/uploads/images/2023/03/22/247756.jpg') no-repeat center center/cover;
         }
 
-        .leader-view {
+        .leader-view h1 {
+        -webkit-text-stroke: 1px white;
         text-shadow:
    -1px -1px 0 #FFFFFF,  
     1px -1px 0 #FFFFFF,
