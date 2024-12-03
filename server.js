@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import process from 'process';
 import sqlite3 from 'sqlite3';
 import bodyParser from 'body-parser';
+import path from 'path';
 
 
 dotenv.config();
@@ -13,7 +14,8 @@ app.use(express.json());
 // Middleware to parse JSON
 app.use(bodyParser.json());
 
-const database = new sqlite3.Database('C:\\Users\\sirpl\\Downloads\\Backend server\\sqlite (4).db', (err) => {
+const dbPath = path.resolve('sqlite (4).db')
+const database = new sqlite3.Database(dbPath, (err) => {
     if (err) {
       console.error('Error opening database:', err.message);
     } else {
@@ -28,6 +30,31 @@ async function runQuery(query, parameters =[]){
 
             if(err) reject(err);
             else resolve(this.lastID);
+        });
+    });
+}
+
+async function getQueries(query){
+
+    return new Promise((resolve, reject) => {
+
+        database.all(query, [], function(err, rows){
+
+            if(err) reject(err);
+            else resolve(rows);
+        })
+    })
+}
+
+async function getQuery(query, parameters = []){
+
+    return new Promise((resolve, reject) => {
+        database.get(query, parameters, function(err, rows){
+
+            if(err) reject(err);
+            else resolve(rows);
+            console.log(rows);
+
         });
     });
 }
@@ -47,8 +74,24 @@ app.use((req, res, next) => { //cors bypass policy
 
 });
 
-app.get('/test', (req, res) => { //tests that the server can send a get request
-    res.send('Server is working!');
+app.get('/get-events', async (req, res) => { 
+    try{
+
+        const retrieve_events = `SELECT EVENT_ID, EVENT_NAME, EVENT_DATE FROM EVENT`;
+        const events = await getQueries(retrieve_events);
+        res.status(200).json(events);
+
+    }
+    catch(error){
+
+        console.error('error retrieving data: ', error);
+        return res.status(500).json({
+
+            message: 'there was an error retrieving the data',
+            error: error.response?.data || error.message,
+        });
+    }
+    
 });
 
 app.post('/submit-YLdata', async (req, res) => {
@@ -64,6 +107,12 @@ app.post('/submit-YLdata', async (req, res) => {
         const guardian_Insert =  `INSERT INTO GUARDIAN (STUDENT_ID, ADDRESS_ID, FIRST_NAME, LAST_NAME, PHONE_NUM, EMAIL) VALUES (?, ?, ?, ?, ?, ?)`;
         const leader_Insert = `INSERT INTO LEADER (CLUB_ID, FIRST_NAME, LAST_NAME, PHONE_NUM, EMAIL) VALUES (?, ?, ?, ?, ?)`;
         const event_Insert =`INSERT INTO EVENT (ADDRESS_ID, CLUB_ID, EVENT_NAME, EVENT_DATE) VALUES (?, ?, ?, ?)`;
+        const student_enroll_Insert = `INSERT INTO STU_ENROLL (STUDENT_ID, EVENT_ID) VALUES (?, ?)`;
+        const get_StudentID = `SELECT STUDENT_ID FROM STUDENT WHERE FIRST_NAME = ? AND LAST_NAME = ? AND PHONE_NUM = ?`;
+        const get_LeaderID = `SELECT LEADER_ID FROM LEADER WHERE FIRST_NAME = ? AND LAST_NAME = ? AND PHONE_NUM = ?`;
+        const leader_enroll_Insert = `INSERT INTO LEADER_ENROLL (LEADER_ID, EVENT_ID) VALUES (?, ?)`;
+
+        
 
 
         if(formType == 'studentRegistration'){
@@ -181,6 +230,42 @@ app.post('/submit-YLdata', async (req, res) => {
                 event_information.EVENT_DATE,
 
             ]);
+        }
+
+        else if(formType === 'studentEnrollment'){
+            const eventID = formData[1];
+            const student = formData[2];
+            const student_ID = await getQuery(get_StudentID, [
+
+                student.FIRST_NAME,
+                student.LAST_NAME,
+                student.PHONE_NUM
+            ]);
+
+            await runQuery(student_enroll_Insert, [
+
+                student_ID.STUDENT_ID,
+                eventID.EVENT_ID,
+
+            ]); 
+        }
+
+        else if(formType === 'leaderEnrollment'){
+            const eventID = formData[1];
+            const leader = formData[2];
+            const leader_ID = await getQuery(get_LeaderID, [
+
+                leader.FIRST_NAME,
+                leader.LAST_NAME,
+                leader.PHONE_NUM
+            ]);
+
+            await runQuery(leader_enroll_Insert, [
+
+                leader_ID.LEADER_ID,
+                eventID.EVENT_ID,
+
+            ]); 
         }
 
         return res.status(200).json({ message: 'Data received successfully', receivedData: formData});
