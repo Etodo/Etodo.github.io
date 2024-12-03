@@ -13,8 +13,6 @@ form {
     background-color: rgb(253, 185, 48); 
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align:center;
-    box-sizing:800px;
 }
 
 h1, h2, h3 {
@@ -90,7 +88,7 @@ body {
     font-size: 14px;
 }
 
-/* Main Header Section */
+
 .main-header {
     display: flex;
     justify-content: space-between;
@@ -151,7 +149,7 @@ body {
     color: white;
 }
 
-/* Navigation Bar */
+
 .nav-bar {
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
