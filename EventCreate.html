@@ -4,81 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event</title>
-    <style>
-        /* Center the form and style it */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f9;
-        }
-
-        form {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 300px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 8px;
-            text-align: left;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="newcss.css">
 </head>
 <body>
-    <form id="event-form" action="http://localhost:5000/create-event" method="POST">
+    <form action="ThankYOU.html" id="eventCreation" method="post">
         <h1>Create Event</h1>
 
         <label for="event-name">Event Name:</label>
         <input type="text" id="event-name" name="event_name" placeholder="Enter event name" required>
 
-        <label for="club-number">Club Number:</label>
-        <input type="text" id="club-number" name="club_number" placeholder="Enter club number" required>
-
+        <label for="club">Club:</label><br>
+                <select name="Club" id="Club">
+                    <option value ="Kamehameha">Kamehameha</option>
+                    <option value ="Farrington">Farrington</option>
+                </select><br>
         <label for="event-date">Event Date:</label>
         <input type="date" id="event-date" name="event_date" required>
 
-        <button type="submit">Submit</button>
+        <h3>Event Location:</h3>
+        <label for="street">Street Address:</label><br>
+        <input type="text" id="street" name="street" required><br><br>
+
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city" required><br><br>
+
+        <label for="state">State:</label><br>
+        <input type="text" id="state" name="state" required><br><br>
+
+        <label for="zip">ZIP Code:</label><br>
+        <input type="text" id="zip" name="zip" pattern="[0-9]{5}"  required><br><br>
+
+        <h3>Event Description</h3>
+        <label for="type">Description:</label><br>
+        <input type="text" id="eventtype" name="eventName"><br><br>
+
+        <div class="form-action">
+            <a href="ThankYOU.html"><button type="submit" id="submitForm">Submit</button></a> </div>
     </form>
+        </div>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('eventCreation');
+            document.getElementById('eventCreation').addEventListener('submit', function(event){
+                event.preventDefault();
+                const form = document.querySelector('form');
+                if(!form.checkValidity()){
+                    return;
+                }
+                alert("Thank you for choosing Young Life!");
+                
+                const formData = new FormData(form);
+                const formObject = Object.fromEntries(formData.entries());
+                console.log('Data:', formObject);
+                const formName ={
+                    name: form.id
+                }
+                if(formObject.Club === "Kamehameha"){
+                    club_id = 1;
+                }
+                else club_id = 2;
+
+                const event_info = {
+
+                    CLUB_ID: club_id,
+                    EVENT_NAME: formObject.event_name,
+                    EVENT_DATE: formObject.event_date
+                }
+
+                const event_location = {
+
+                    STREET_ADD: formObject.street,
+                    CITY: formObject.city,
+                    ZIP: formObject.zip,
+                    STATE: formObject.state
+                }
+
+
+                let data = [formName, event_info, event_location];
+                
+                fetch('http://localhost:5000/submit-YLdata', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from server:', data);
+                })
+                .catch(error => console.error('Error:', error));
+                
+            })
+                
+
+        });
+
+    </script>
 </body>
 </html>
