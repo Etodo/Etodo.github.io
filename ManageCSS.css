@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(254, 254, 254); 
+    color: rgb(0, 58, 91); 
+}
+
+h1, h2, h3 {
+    color: rgb(0, 58, 91);
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    color: rgb(0, 58, 91); 
+    display: block;
+    margin-bottom: 5px;
+}
+body > div {
+    padding: 20px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(254, 254, 254);
+    color: rgb(0, 58, 91);
+}
+
+
+.promo-banner {
+    background-color: rgb(253, 185, 48);
+    text-align: center;
+    padding: 10px 0;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 58, 91);
+    padding: 10px 20px;
+    color: white;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.brand-name {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-involved {
+    background-color: rgb(238, 147, 33);
+    color: white;
+}
+
+.btn-involved:hover {
+    background-color: rgb(253, 185, 48);
+}
+
+.btn-give {
+    background-color: rgb(146, 201, 60);
+    color: white;
+}
+
+.btn-give:hover {
+    background-color: rgb(0, 58, 91);
+    color: white;
+}
+
+
+.nav-bar {
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: rgb(0, 58, 91);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: rgb(0, 58, 91);
+}
+
+.main-header h1 {
+    color: white;
+}
